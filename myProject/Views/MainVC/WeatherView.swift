@@ -12,6 +12,7 @@ class WeatherView: UIView {
     
     override init(frame: CGRect) {
         super .init(frame: frame)
+        addShadowOnView()
         setupViews()
         setConstraints()
     }
@@ -30,6 +31,8 @@ class WeatherView: UIView {
         let label = UILabel()
         label.text = "Солнечно"
         label.adjustsFontSizeToFitWidth = true
+        label.textColor = .specialGray
+        label.font = .robotoMedium18()
         label.minimumScaleFactor = 0.5
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,13 +45,14 @@ class WeatherView: UIView {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.textColor = #colorLiteral(red: 0.8044065833, green: 0.8044064641, blue: 0.8044064641, alpha: 1)
+        label.font = .robotoMedium14()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     
     private func setupViews() {
-        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        backgroundColor = .white
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
        
@@ -63,8 +67,8 @@ extension WeatherView {
     func setConstraints() {
         NSLayoutConstraint.activate([
             sunImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            sunImage.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            sunImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            sunImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            sunImage.heightAnchor.constraint(equalToConstant: 60),
             sunImage.widthAnchor.constraint(equalToConstant: 60)
         ])
         
@@ -78,7 +82,7 @@ extension WeatherView {
         NSLayoutConstraint.activate([
             smallTextLabel.topAnchor.constraint(equalTo: centerYAnchor),
             smallTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            smallTextLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            smallTextLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             smallTextLabel.trailingAnchor.constraint(equalTo: sunImage.leadingAnchor, constant: -10)
         ])
         
